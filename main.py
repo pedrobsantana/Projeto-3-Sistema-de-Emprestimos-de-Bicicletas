@@ -120,7 +120,7 @@ class Loja(object):
             return True
 
     # calcular a conta na hora da devolução da bicicleta
-    def calcularConta(self, alugarBike, locacalFamilia):
+    def calcularConta(self, alugarBike, locacaoFamilia):
         horaLocacao, tipoLocacao, qtdBikes = alugarBike
 
         if horaLocacao and tipoLocacao and qtdBikes:
