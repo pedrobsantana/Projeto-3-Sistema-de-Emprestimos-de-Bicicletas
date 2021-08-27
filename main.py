@@ -24,16 +24,15 @@ def main():
         if opcao == 1:
             novaLoja.mostrarEstoque()
         elif opcao == 2:
-            novoCliente.alugarBike(qtdBikes=0, tipoLocacao=0)
+            novoCliente.alugarBike(0, 0)
             print("Obrigado por alugar conosco.")
-        #elif opcao == 3:
-            #novaLoja.calcularConta(novoCliente.alugarBike(qtdBike, tipoLocacao))
+        elif opcao == 3:
+            novaLoja.calcularConta(novoCliente.alugarBike(Cliente.qtdBikes, Cliente.tipoLocacao))
         elif opcao == 4:
             break
         else:
             print("Opção inválida!\nFavor digitar um número de 1 a 4.")
     print("Obrigado por alugar conosco.")
-
 
 if __name__ == "__main__":
     main()

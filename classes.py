@@ -27,10 +27,11 @@ class Cliente(object):
 
         tipoLocacao = 0
         while tipoLocacao == 0:
-            tipoLocacao = input("Qual o tipo de locação?\n (Digite o número)\n \
+            tipoLocacao = input("Qual o tipo de locação? \n \
                 1 - Locação por HORA (R$ 5,00 / hora); \n \
                 2 - Locação por DIA (R$ 25,00 / dia); \n \
-                3 - Locação por SEMANA (R$ 100,00 / semana).")
+                3 - Locação por SEMANA (R$ 100,00 / semana). \n"
+                )
             
             try:
                 tipoLocacao = int(tipoLocacao)
