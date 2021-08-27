@@ -18,7 +18,7 @@ def main():
         try:
             opcao = int(opcao)
         except ValueError:
-            print("Opção i3nválida!\nA opção deve ser um número inteiro positivo.")
+            print("Opção inválida!\nA opção deve ser um número inteiro positivo.")
             continue
 
         if opcao == 1:
