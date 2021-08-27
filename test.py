@@ -1,6 +1,6 @@
 import unittest
 import datetime
-import principal
+import main
 from classes import Loja, Cliente
 
 class TestaEmprestimoBikes(unittest.TestCase):
