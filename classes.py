@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+import datetime
 
 class Cliente(object):
     def __init__(self, qtdBikes, tipoLocacao, horaLocacao):

@@ -1,3 +1,4 @@
+import datetime
 from classes import Loja, Cliente
 
 def main():
