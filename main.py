@@ -25,10 +25,10 @@ def main():
         if opcao == 1:
             novaLoja.mostrarEstoque()
         elif opcao == 2:
-            novoCliente.alugarBike(0, 0)
+            novoCliente.alugarBike(0, 0, novaLoja)
             print("Obrigado por alugar conosco.")
         elif opcao == 3:
-            novaLoja.calcularConta(novoCliente.alugarBike(Cliente.qtdBikes, Cliente.tipoLocacao))
+            novaLoja.calcularConta(novoCliente.alugarBike(novoCliente.qtdBikes, novoCliente.tipoLocacao, novaLoja))
         elif opcao == 4:
             break
         else:

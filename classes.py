@@ -7,11 +7,11 @@ class Cliente(object):
         self.horaLocacao = horaLocacao
     
     # visulizar as bicicletas disponíveis no Estoque da Loja
-    def mostrarEstoque(self):
-        return print(f"Estoque disponível: {Loja.estoque} bicicletas")
+    def mostrarEstoque(self, novaLoja):
+        return print(f"Estoque disponível: {novaLoja.estoque} bicicletas")
 
     # alugar bicicletas, conforme a quantidade e modalidades a serem escolhidas
-    def alugarBike(self, qtdBikes, tipoLocacao):
+    def alugarBike(self, qtdBikes, tipoLocacao, novaLoja):
         qtdBikes = input("Quantas bicicletas você quer alugar? ")
         try:
             qtdBikes = int(qtdBikes)
@@ -43,11 +43,11 @@ class Cliente(object):
                 tipoLocacao = 0
 
             if tipoLocacao == 1:
-                self.horaLocacao = Loja.locacaoHora(Cliente.qtdBikes)
+                self.horaLocacao = novaLoja.locacaoHora(self.qtdBikes, novaLoja)
             elif tipoLocacao == 2:
-                self.horaLocacao = Loja.locacaoDia(Cliente.qtdBikes)
+                self.horaLocacao = novaLoja.locacaoDia(self.qtdBikes, novaLoja)
             else:
-                self.horaLocacao = Loja.locacaoDia(Cliente.qtdBikes)
+                self.horaLocacao = novaLoja.locacaoDia(self.qtdBikes, novaLoja)
 
             return self.qtdBikes, self.tipoLocacao, self.horaLocacao
 
