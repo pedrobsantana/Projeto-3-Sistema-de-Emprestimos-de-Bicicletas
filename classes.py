@@ -151,3 +151,13 @@ class Loja(object):
             return conta
         else:
             print("A locação não foi encontrada no sistema.")
+
+testeCliente = Cliente(2, 1, 12)
+testeLoja = Loja(200)
+#print(testeCliente)
+print(testeLoja.mostrarEstoque())
+print(testeLoja.locacaoHora(2))
+print(testeLoja.locacaoDia(1))
+print(testeLoja.locacaoSemana(3))
+print(testeLoja.locacaoFamilia(4))
+print(testeLoja.calcularConta(1, 1))
