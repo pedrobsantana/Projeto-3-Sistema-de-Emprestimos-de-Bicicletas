@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, timedelta
 
 class Cliente(object):
     def __init__(self, qtdBikes, tipoLocacao, horaLocacao):
@@ -70,7 +70,7 @@ class Loja(object):
             return None
         # caso o estoque esteja disponível, exibe as informações para o cliente e retorna a hora atual para que depois seja feito o cálculo do valor a ser pago
         else:
-            horaLocacao = datetime.datetime.now()
+            horaLocacao = datetime.now()
             print(f"Você está alugando {qtdBikes} bicicleta(s), às {horaLocacao} de hoje. O valor para locação por HORA é de R$ 5,00 por hora, por bicicleta.")
             self.estoque -= qtdBikes
             return horaLocacao
@@ -87,7 +87,7 @@ class Loja(object):
             return None
         # caso o estoque esteja disponível, exibe as informações para o cliente e retorna a hora atual para que depois seja feito o cálculo do valor a ser pago
         else:
-            horaLocacao = datetime.datetime.now()
+            horaLocacao = datetime.now()
             print(f"Você está alugando {qtdBikes} bicicleta(s), às {horaLocacao} de hoje. O valor para locação por DIA é de R$ 25,00 por dia, por bicicleta.")
             self.estoque -= qtdBikes
             return horaLocacao
@@ -104,7 +104,7 @@ class Loja(object):
             return None
         # caso o estoque esteja disponível, exibe as informações para o cliente e retorna a hora atual para que depois seja feito o cálculo do valor a ser pago
         else:
-            horaLocacao = datetime.datetime.now()
+            horaLocacao = datetime.now()
             print(f"Você está alugando {qtdBikes} bicicleta(s), às {horaLocacao} de hoje. O valor para locação por SEMANA é de R$ 100,00 por semana, por bicicleta.")
             self.estoque -= qtdBikes
             return horaLocacao
@@ -125,7 +125,7 @@ class Loja(object):
 
         if horaLocacao and tipoLocacao and qtdBikes:
             self.estoque += qtdBikes
-            horaAtual = datetime.datetime.now()
+            horaAtual = datetime.now()
             tempoLocacao = horaAtual - horaLocacao
 
             # se a locação tiver sido por HORA, opção 1
@@ -151,13 +151,3 @@ class Loja(object):
             return conta
         else:
             print("A locação não foi encontrada no sistema.")
-
-testeCliente = Cliente(2, 1, 12)
-testeLoja = Loja(200)
-#print(testeCliente)
-print(testeLoja.mostrarEstoque())
-print(testeLoja.locacaoHora(2))
-print(testeLoja.locacaoDia(1))
-print(testeLoja.locacaoSemana(3))
-print(testeLoja.locacaoFamilia(4))
-print(testeLoja.calcularConta(1, 1))
