@@ -167,3 +167,4 @@ class Loja(object):
             return conta
         else:
             print("A locação não foi encontrada no sistema.")
+#teste
