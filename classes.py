@@ -118,6 +118,7 @@ class Loja(object):
     def locacaoFamilia(self, qtdBikes, novoCliente):
         # Promoção que pode incluir de 3 a 5 empréstimos (de qualquer tipo) com 30% de desconto no valor total
         # verifica se é possível aplicar a promoção, se for possível retorna True e se não for possível, retorna False
+        
         if not (3 <= qtdBikes <= 5):
             print("O desconto da Promoção Família não é aplicável.")
             return False
