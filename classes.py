@@ -137,7 +137,6 @@ class Loja(object):
             # se a locação tiver sido por HORA, opção 1
             if objCliente.tipoLocacao == 1:
                 conta = (math.ceil(tempoLocacao.seconds / 3600) * objCliente.qtdBikes) * 5
-                #horas = math.ceil(tempoLocacao.seconds / 3600) * objCliente.qtdBikes
                 #conta = horas * 5
                 #conta = math.ceil((tempoLocacao.seconds / 3600) * 5 * objCliente.qtdBikes)
 
