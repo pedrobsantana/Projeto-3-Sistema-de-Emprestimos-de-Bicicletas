@@ -142,14 +142,16 @@ class Loja(object):
 
             # se a locação tiver sido por DIA, opção 2
             elif objCliente.tipoLocacao == 2:
-                dias = math.ceil(tempoLocacao.seconds / 3600 / 24) * objCliente.qtdBikes
-                conta = dias * 25
+                conta = (math.ceil(tempoLocacao.seconds / 3600 / 24) * objCliente.qtdBikes) * 25
+                #dias = math.ceil(tempoLocacao.seconds / 3600 / 24) * objCliente.qtdBikes
+                #conta = dias * 25
                 #conta = math.ceil((tempoLocacao.days) * 25 * objCliente.qtdBikes)
 
             # se a locação tiver sido por SEMANA, opção 3
             else:
-                semanas = math.ceil(tempoLocacao.seconds / 3600 / 24 / 7) * objCliente.qtdBikes
-                conta = semanas * 100
+                conta = (math.ceil(tempoLocacao.seconds / 3600 / 24 / 7) * objCliente.qtdBikes) * 100
+                #semanas = math.ceil(tempoLocacao.seconds / 3600 / 24 / 7) * objCliente.qtdBikes
+                #conta = semanas * 100
                 #conta = math.ceil((tempoLocacao.days / 7) * 100 * objCliente.qtdBikes)
 
             # verificação da promoção do desconto família
