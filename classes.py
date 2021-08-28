@@ -77,7 +77,7 @@ class Loja(object):
         # caso o estoque esteja disponível, exibe as informações para o cliente e retorna a hora atual para que depois seja feito o cálculo do valor a ser pago
         else:
             horaLocacao = datetime.datetime.now()
-            print(f"Você está alugando {qtdBikes} bicicleta(s), às {horaLocacao} de hoje. O valor para locação por HORA é de R$ 5,00 por hora, por bicicleta.")
+            print(f"Você está alugando {qtdBikes} bicicleta(s), às {horaLocacao.strftime('%H:%M %d-%m-%Y')}. O valor para locação por HORA é de R$ 5,00 por hora, por bicicleta.")
             self.estoque -= qtdBikes
             return horaLocacao
     
@@ -94,7 +94,7 @@ class Loja(object):
         # caso o estoque esteja disponível, exibe as informações para o cliente e retorna a hora atual para que depois seja feito o cálculo do valor a ser pago
         else:
             horaLocacao = datetime.datetime.now()
-            print(f"Você está alugando {qtdBikes} bicicleta(s), às {horaLocacao} de hoje. O valor para locação por DIA é de R$ 25,00 por dia, por bicicleta.")
+            print(f"Você está alugando {qtdBikes} bicicleta(s), às {horaLocacao.strftime('%H:%M %d-%m-%Y')}. O valor para locação por DIA é de R$ 25,00 por dia, por bicicleta.")
             self.estoque -= qtdBikes
             return horaLocacao
 
@@ -111,7 +111,7 @@ class Loja(object):
         # caso o estoque esteja disponível, exibe as informações para o cliente e retorna a hora atual para que depois seja feito o cálculo do valor a ser pago
         else:
             horaLocacao = datetime.datetime.now()
-            print(f"Você está alugando {qtdBikes} bicicleta(s), às {horaLocacao} de hoje. O valor para locação por SEMANA é de R$ 100,00 por semana, por bicicleta.")
+            print(f"Você está alugando {qtdBikes} bicicleta(s), às {horaLocacao.strftime('%H:%M %d-%m-%Y')}. O valor para locação por SEMANA é de R$ 100,00 por semana, por bicicleta.")
             self.estoque -= qtdBikes
             return horaLocacao
 
@@ -127,7 +127,6 @@ class Loja(object):
 
     # calcular a conta na hora da devolução da bicicleta
     def calcularConta(self, objCliente, locacaoFamilia):
-        print(objCliente.horaLocacao, objCliente.tipoLocacao, objCliente.qtdBikes)
 
         if objCliente.horaLocacao and objCliente.tipoLocacao and objCliente.qtdBikes:
             self.estoque += objCliente.qtdBikes
@@ -139,26 +138,22 @@ class Loja(object):
                 horas = math.ceil(tempoLocacao.seconds / 3600) * objCliente.qtdBikes
                 conta = horas * 5
                 #conta = math.ceil((tempoLocacao.seconds / 3600) * 5 * objCliente.qtdBikes)
-                print(conta)
 
             # se a locação tiver sido por DIA, opção 2
             elif objCliente.tipoLocacao == 2:
                 dias = math.ceil(tempoLocacao.seconds / 3600 / 24) * objCliente.qtdBikes
                 conta = dias * 25
                 #conta = math.ceil((tempoLocacao.days) * 25 * objCliente.qtdBikes)
-                print(conta)
 
             # se a locação tiver sido por SEMANA, opção 3
             else:
                 semanas = math.ceil(tempoLocacao.seconds / 3600 / 24 / 7) * objCliente.qtdBikes
                 conta = semanas * 100
                 #conta = math.ceil((tempoLocacao.days / 7) * 100 * objCliente.qtdBikes)
-                print(conta)
 
             # verificação da promoção do desconto família
             if locacaoFamilia(objCliente.qtdBikes, objCliente) == True:
                 conta = conta * 0.7
-                print(conta)
             else:
                 self.locacaoFamilia(objCliente.qtdBikes, objCliente)
             
