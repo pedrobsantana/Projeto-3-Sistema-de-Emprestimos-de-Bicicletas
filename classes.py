@@ -1,4 +1,5 @@
 import datetime
+import math
 
 class Cliente(object):
     def __init__(self, qtdBikes, tipoLocacao, horaLocacao):
@@ -37,9 +38,7 @@ class Cliente(object):
                 )
             
             try:
-                print("tipo de locação")
                 tipoLocacao = int(tipoLocacao)
-                print("tipo de locação 2")
             except ValueError:
                 print("Entrada inválida. Favor digitar um número inteiro positivo.")
 
@@ -137,17 +136,17 @@ class Loja(object):
 
             # se a locação tiver sido por HORA, opção 1
             if objCliente.tipoLocacao == 1:
-                conta = (tempoLocacao.seconds / 3600) * 5 * objCliente.qtdBikes
+                conta = math.ceil((tempoLocacao.seconds / 3600) * 5 * objCliente.qtdBikes)
                 print(conta)
 
             # se a locação tiver sido por DIA, opção 2
             elif objCliente.tipoLocacao == 2:
-                conta = (tempoLocacao.days) * 25 * objCliente.qtdBikes
+                conta = math.ceil((tempoLocacao.days) * 25 * objCliente.qtdBikes)
                 print(conta)
 
             # se a locação tiver sido por SEMANA, opção 3
             else:
-                conta = (tempoLocacao.days / 7) * 100 * objCliente.qtdBikes
+                conta = math.ceil((tempoLocacao.days / 7) * 100 * objCliente.qtdBikes)
                 print(conta)
 
             # verificação da promoção do desconto família

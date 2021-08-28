@@ -29,7 +29,6 @@ def main():
             print("Obrigado por alugar conosco.")
         elif opcao == 3:
             novaLoja.calcularConta(novoCliente, novaLoja.locacaoFamilia)
-            print("teste da opção 3")
         elif opcao == 4:
             break
         else:
