@@ -156,9 +156,9 @@ class Loja(object):
             if locacaoFamilia(objCliente.qtdBikes, objCliente) == True:
                 conta = conta * 0.7
             else:
-                self.locacaoFamilia(objCliente.qtdBikes, objCliente)
+                #self.locacaoFamilia(objCliente.qtdBikes, objCliente) - desabilitei essa linha para que não o print que a promoção não era aplicável não aparecesse duas vezes
             
-            self.conta = conta
+                self.conta = conta # e aqui, puxei pra identação do else
 
             # cliente devolve as bicicletas e retorna o valor que ele deve pagar
             print(f"Devolução de bicicletas aceita. O valor total da sua locação é de: R$ {conta}")
