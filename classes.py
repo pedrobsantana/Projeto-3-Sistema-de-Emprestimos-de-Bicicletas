@@ -5,13 +5,16 @@ class Cliente(object):
         self.qtdBikes = qtdBikes
         self.tipoLocacao = tipoLocacao
         self.horaLocacao = horaLocacao
-    
+
     # visulizar as bicicletas disponíveis no Estoque da Loja
     def mostrarEstoque(self, novaLoja):
         return print(f"Estoque disponível: {novaLoja.estoque} bicicletas")
 
     # alugar bicicletas, conforme a quantidade e modalidades a serem escolhidas
     def alugarBike(self, qtdBikes, tipoLocacao, novaLoja):
+        self.qtdBikes = qtdBikes
+        self.tipoLocacao = tipoLocacao
+
         qtdBikes = input("Quantas bicicletas você quer alugar? ")
         try:
             qtdBikes = int(qtdBikes)
@@ -34,21 +37,24 @@ class Cliente(object):
                 )
             
             try:
+                print("tipo de locação")
                 tipoLocacao = int(tipoLocacao)
+                print("tipo de locação 2")
             except ValueError:
                 print("Entrada inválida. Favor digitar um número inteiro positivo.")
 
             while tipoLocacao not in [1, 2, 3]:
                 print("Entrada inválida. Favor digitar 1 para HORA, 2 para DIA ou 3 para SEMANA.")
                 tipoLocacao = 0
+                break
 
             if tipoLocacao == 1:
                 self.horaLocacao = novaLoja.locacaoHora(self.qtdBikes, novaLoja)
             elif tipoLocacao == 2:
                 self.horaLocacao = novaLoja.locacaoDia(self.qtdBikes, novaLoja)
             else:
-                self.horaLocacao = novaLoja.locacaoDia(self.qtdBikes, novaLoja)
-
+                self.horaLocacao = novaLoja.locacaoSemana(self.qtdBikes, novaLoja)
+            self.tipoLocacao = tipoLocacao
             return self.qtdBikes, self.tipoLocacao, self.horaLocacao
 
 class Loja(object):
@@ -60,7 +66,7 @@ class Loja(object):
         print(f"Estoque disponível: {self.estoque} bicicletas")
     
     # aluguel por hora com validação do estoque
-    def locacaoHora(self, qtdBikes):
+    def locacaoHora(self, qtdBikes, novoCliente):
         # número negativo de bicicletas
         if qtdBikes <= 0:
             print("Quantidade inválida, a quantidade deve ser um número inteiro positivo.")
@@ -71,13 +77,13 @@ class Loja(object):
             return None
         # caso o estoque esteja disponível, exibe as informações para o cliente e retorna a hora atual para que depois seja feito o cálculo do valor a ser pago
         else:
-            horaLocacao = datetime.now()
+            horaLocacao = datetime.datetime.now()
             print(f"Você está alugando {qtdBikes} bicicleta(s), às {horaLocacao} de hoje. O valor para locação por HORA é de R$ 5,00 por hora, por bicicleta.")
             self.estoque -= qtdBikes
             return horaLocacao
     
     # aluguel por dia com validação do estoque
-    def locacaoDia(self, qtdBikes):
+    def locacaoDia(self, qtdBikes, novoCliente):
         # número negativo de bicicletas
         if qtdBikes <= 0:
             print("Quantidade inválida, a quantidade deve ser um número inteiro positivo.")
@@ -88,13 +94,13 @@ class Loja(object):
             return None
         # caso o estoque esteja disponível, exibe as informações para o cliente e retorna a hora atual para que depois seja feito o cálculo do valor a ser pago
         else:
-            horaLocacao = datetime.now()
+            horaLocacao = datetime.datetime.now()
             print(f"Você está alugando {qtdBikes} bicicleta(s), às {horaLocacao} de hoje. O valor para locação por DIA é de R$ 25,00 por dia, por bicicleta.")
             self.estoque -= qtdBikes
             return horaLocacao
 
     # aluguel por semana com validação do estoque
-    def locacaoSemana(self, qtdBikes):
+    def locacaoSemana(self, qtdBikes, novoCliente):
         # número negativo de bicicletas
         if qtdBikes <= 0:
             print("Quantidade inválida, a quantidade deve ser um número inteiro positivo.")
@@ -110,7 +116,7 @@ class Loja(object):
             self.estoque -= qtdBikes
             return horaLocacao
 
-    def locacaoFamilia(self, qtdBikes):
+    def locacaoFamilia(self, qtdBikes, novoCliente):
         # Promoção que pode incluir de 3 a 5 empréstimos (de qualquer tipo) com 30% de desconto no valor total
         # verifica se é possível aplicar a promoção, se for possível retorna True e se não for possível, retorna False
         if not (3 <= qtdBikes <= 5):
@@ -121,31 +127,31 @@ class Loja(object):
             return True
 
     # calcular a conta na hora da devolução da bicicleta
-    def calcularConta(self, alugarBike, locacaoFamilia):
-        horaLocacao, tipoLocacao, qtdBikes = alugarBike
+    def calcularConta(self, objCliente, locacaoFamilia):
+        print(objCliente.horaLocacao, objCliente.tipoLocacao, objCliente.qtdBikes)
 
-        if horaLocacao and tipoLocacao and qtdBikes:
-            self.estoque += qtdBikes
-            horaAtual = datetime.now()
-            tempoLocacao = horaAtual - horaLocacao
+        if objCliente.horaLocacao and objCliente.tipoLocacao and objCliente.qtdBikes:
+            self.estoque += objCliente.qtdBikes
+            horaAtual = datetime.datetime.now()
+            tempoLocacao = horaAtual - objCliente.horaLocacao
 
             # se a locação tiver sido por HORA, opção 1
-            if tipoLocacao == 1:
-                conta = round(tempoLocacao.seconds / 3600) * 5 * qtdBikes
+            if objCliente.tipoLocacao == 1:
+                conta = round(tempoLocacao.seconds / 3600) * 5 * objCliente.qtdBikes
 
             # se a locação tiver sido por DIA, opção 2
-            elif tipoLocacao == 2:
-                conta = round(tempoLocacao.days) * 25 * qtdBikes
+            elif objCliente.tipoLocacao == 2:
+                conta = round(tempoLocacao.days) * 25 * objCliente.qtdBikes
 
             # se a locação tiver sido por SEMANA, opção 3
             else:
-                conta = round(tempoLocacao.days / 7) * 100 * qtdBikes
+                conta = round(tempoLocacao.days / 7) * 100 * objCliente.qtdBikes
 
             # verificação da promoção do desconto família
-            if locacaoFamilia(qtdBikes) == True:
+            if locacaoFamilia(objCliente.qtdBikes) == True:
                 conta = conta * 0.7
             else:
-                locacaoFamilia(qtdBikes)
+                locacaoFamilia(objCliente.qtdBikes)
 
             # cliente devolve as bicicletas e retorna o valor que ele deve pagar
             print(f"Devolução de bicicletas aceita. O valor total da sua locação é de: R$ {conta}.")
