@@ -111,7 +111,7 @@ class Loja(object):
             return None
         # caso o estoque esteja disponível, exibe as informações para o cliente e retorna a hora atual para que depois seja feito o cálculo do valor a ser pago
         else:
-            horaLocacao = datetime.now()
+            horaLocacao = datetime.datetime.now()
             print(f"Você está alugando {qtdBikes} bicicleta(s), às {horaLocacao} de hoje. O valor para locação por SEMANA é de R$ 100,00 por semana, por bicicleta.")
             self.estoque -= qtdBikes
             return horaLocacao
@@ -137,24 +137,29 @@ class Loja(object):
 
             # se a locação tiver sido por HORA, opção 1
             if objCliente.tipoLocacao == 1:
-                conta = round(tempoLocacao.seconds / 3600) * 5 * objCliente.qtdBikes
+                conta = (tempoLocacao.seconds / 3600) * 5 * objCliente.qtdBikes
+                print(conta)
 
             # se a locação tiver sido por DIA, opção 2
             elif objCliente.tipoLocacao == 2:
-                conta = round(tempoLocacao.days) * 25 * objCliente.qtdBikes
+                conta = (tempoLocacao.days) * 25 * objCliente.qtdBikes
+                print(conta)
 
             # se a locação tiver sido por SEMANA, opção 3
             else:
-                conta = round(tempoLocacao.days / 7) * 100 * objCliente.qtdBikes
+                conta = (tempoLocacao.days / 7) * 100 * objCliente.qtdBikes
+                print(conta)
 
             # verificação da promoção do desconto família
-            if locacaoFamilia(objCliente.qtdBikes) == True:
+            if locacaoFamilia(objCliente.qtdBikes, objCliente) == True:
                 conta = conta * 0.7
+                print(conta)
             else:
-                locacaoFamilia(objCliente.qtdBikes)
+                self.locacaoFamilia(objCliente.qtdBikes, objCliente)
 
             # cliente devolve as bicicletas e retorna o valor que ele deve pagar
             print(f"Devolução de bicicletas aceita. O valor total da sua locação é de: R$ {conta}.")
+            self.conta = conta
             return conta
         else:
             print("A locação não foi encontrada no sistema.")
