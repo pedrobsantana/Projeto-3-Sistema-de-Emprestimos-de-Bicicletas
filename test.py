@@ -10,8 +10,11 @@ class TestaEmprestimoBikes(unittest.TestCase):
 
     def testeMostraEstoque(self):
         print("\nTeste de LOJA - Mostrar Estoque")
-        self.assertEqual(self.loja.mostrarEstoque())
+        self.assertEqual(self.loja.mostrarEstoque(), None)
 
+    def testeLocacaoHora(self):
+        print("\nTeste de LOJA - Locação Hora")
+        self.assertEqual(self.loja.locacaoHora,(10, 13))
 
 if __name__ == "__main__":
     unittest.main()
