@@ -130,7 +130,11 @@ class Loja(object):
     def calcularConta(self, objCliente, locacaoFamilia):
 
         if objCliente.horaLocacao and objCliente.tipoLocacao and objCliente.qtdBikes:
-            self.estoque += objCliente.qtdBikes
+            if self.estoque < 100:
+                self.estoque += objCliente.qtdBikes
+            else:
+                print("Estoque já está cheio")
+                pass
             horaAtual = datetime.datetime.now()
             tempoLocacao = horaAtual - objCliente.horaLocacao
 
