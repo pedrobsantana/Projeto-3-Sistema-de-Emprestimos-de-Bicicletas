@@ -16,5 +16,9 @@ class TestaEmprestimoBikes(unittest.TestCase):
         print("\nTeste de LOJA - Locação Hora")
         self.assertEqual(self.loja.locacaoHora,(10, 13))
 
+    def testeCalcularConta(self):
+        print("\nTeste de LOJA - Calcular Conta")
+        self.assertEqual(self.loja.calcularConta(12, True))
+
 if __name__ == "__main__":
     unittest.main()
