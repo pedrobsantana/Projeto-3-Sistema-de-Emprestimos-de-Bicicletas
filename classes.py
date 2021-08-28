@@ -136,17 +136,23 @@ class Loja(object):
 
             # se a locação tiver sido por HORA, opção 1
             if objCliente.tipoLocacao == 1:
-                conta = math.ceil((tempoLocacao.seconds / 3600) * 5 * objCliente.qtdBikes)
+                horas = math.ceil(tempoLocacao.seconds / 3600) * objCliente.qtdBikes
+                conta = horas * 5
+                #conta = math.ceil((tempoLocacao.seconds / 3600) * 5 * objCliente.qtdBikes)
                 print(conta)
 
             # se a locação tiver sido por DIA, opção 2
             elif objCliente.tipoLocacao == 2:
-                conta = math.ceil((tempoLocacao.days) * 25 * objCliente.qtdBikes)
+                dias = math.ceil(tempoLocacao.seconds / 3600 / 24) * objCliente.qtdBikes
+                conta = dias * 25
+                #conta = math.ceil((tempoLocacao.days) * 25 * objCliente.qtdBikes)
                 print(conta)
 
             # se a locação tiver sido por SEMANA, opção 3
             else:
-                conta = math.ceil((tempoLocacao.days / 7) * 100 * objCliente.qtdBikes)
+                semanas = math.ceil(tempoLocacao.seconds / 3600 / 24 / 7) * objCliente.qtdBikes
+                conta = semanas * 100
+                #conta = math.ceil((tempoLocacao.days / 7) * 100 * objCliente.qtdBikes)
                 print(conta)
 
             # verificação da promoção do desconto família
@@ -155,10 +161,11 @@ class Loja(object):
                 print(conta)
             else:
                 self.locacaoFamilia(objCliente.qtdBikes, objCliente)
+            
+            self.conta = conta
 
             # cliente devolve as bicicletas e retorna o valor que ele deve pagar
-            print(f"Devolução de bicicletas aceita. O valor total da sua locação é de: R$ {conta}.")
-            self.conta = conta
+            print(f"Devolução de bicicletas aceita. O valor total da sua locação é de: R$ {conta}")
             return conta
         else:
             print("A locação não foi encontrada no sistema.")
