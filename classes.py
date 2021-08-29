@@ -9,7 +9,8 @@ class Cliente(object):
 
     # visulizar as bicicletas disponíveis no Estoque da Loja
     def mostrarEstoque(self, novaLoja):
-        return print(f"Estoque disponível: {novaLoja.estoque} bicicletas")
+        print(f"Estoque disponível: {novaLoja.estoque} bicicletas")
+        return novaLoja.estoque
 
     # alugar bicicletas, conforme a quantidade e modalidades a serem escolhidas
     def alugarBike(self, qtdBikes, tipoLocacao, novaLoja):
@@ -63,6 +64,7 @@ class Loja(object):
     # mostra o Estoque disponível para locação
     def mostrarEstoque(self):
         print(f"Estoque disponível: {self.estoque} bicicletas")
+        return self.estoque
     
     # aluguel por hora com validação do estoque
     def locacaoHora(self, qtdBikes, novoCliente):
