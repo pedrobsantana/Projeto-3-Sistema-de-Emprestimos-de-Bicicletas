@@ -12,64 +12,64 @@ class TestaEmprestimoBikes(unittest.TestCase):
         print("\nTeste de LOJA - Mostrar Estoque")
         self.assertEqual(self.loja.mostrarEstoque(), 100)
 
-    def testeLocacaoHora_0bikes(self):
-        print("\nTeste de LOJA - Locação HORA 0 Bikes")
+    def testeLocacaoHoraComZeroBikes(self):
+        print("\nTeste de LOJA - Locação HORA com 0 Bikes")
         self.assertEqual(self.loja.locacaoHora(0, True), None)
 
-    def testeLocacaoHora_1bike(self):
-        print("\nTeste de LOJA - Locação HORA 1 Bike")
+    def testLocacaoHoraAcimaDoEstoque(self):
+        print("\nTeste de LOJA - Locação HORA de 150 Bikes, acima do estoque")
+        self.assertEqual(self.loja.locacaoHora(150, True), None)
+
+    def testeLocacaoHoraComDuasBikes(self):
+        print("\nTeste de LOJA - Locação HORA com 2 Bikes")
         self.assertEqual(self.loja.locacaoHora(2, True), datetime.datetime.now())
     
-    def testeLocacaoHora_bikenegativa(self):
-        print("\nTeste de LOJA - Locação HORA Bike Negativa")
+    def testeLocacaoHoraComBikeNegativa(self):
+        print("\nTeste de LOJA - Locação HORA com Bike Negativa")
         self.assertEqual(self.loja.locacaoHora(-1, True), None)
-    
-    def testeLocacaoHora_estouraestoque(self):
-        print("\nTeste de LOJA - Locação HORA Excedendo o Estoque")
-        self.assertEqual(self.loja.locacaoHora(105, True), None)
 
-    def testeLocacaoDia_0bikes(self):
-        print("\nTeste de LOJA - Locação DIA 0 Bikes")
+    def testeLocacaoDiaComZeroBikes(self):
+        print("\nTeste de LOJA - Locação DIA com 0 Bikes")
         self.assertEqual(self.loja.locacaoDia(0, True), None)
 
-    def testeLocacaoDia_1bike(self):
-        print("\nTeste de LOJA - Locação DIA 1 Bike")
+    def testeLocacaoDiaComDuasBikes(self):
+        print("\nTeste de LOJA - Locação DIA com 2 Bikes")
         self.assertEqual(self.loja.locacaoDia(2, True), datetime.datetime.now())
     
-    def testeLocacaoDia_bikenegativa(self):
-        print("\nTeste de LOJA - Locação DIA Bike Negativa")
+    def testeLocacaoDiaComBikeNegativa(self):
+        print("\nTeste de LOJA - Locação DIA com Bike Negativa")
         self.assertEqual(self.loja.locacaoDia(-1, True), None)
     
-    def testeLocacaoDia_estouraestoque(self):
-        print("\nTeste de LOJA - Locação DIA Excedendo o Estoque")
-        self.assertEqual(self.loja.locacaoDia(105, True), None)
+    def testLocacaoDiaaAcimaDoEstoque(self):
+        print("\nTeste de LOJA - Locação DIA de 150 Bikes, acima do estoque")
+        self.assertEqual(self.loja.locacaoDia(150, True), None)
 
-    def testeLocacaoSemana_0bikes(self):
-        print("\nTeste de LOJA - Locação SEMANA 0 Bikes")
+    def testeLocacaoSemanaComZeroBikes(self):
+        print("\nTeste de LOJA - Locação SEMANA com 0 Bikes")
         self.assertEqual(self.loja.locacaoSemana(0, True), None)
 
-    def testeLocacaoSemana_1bike(self):
-        print("\nTeste de LOJA - Locação SEMANA 1 Bike")
+    def testeLocacaoSemanaComDuasBikes(self):
+        print("\nTeste de LOJA - Locação SEMANA com 2 Bikes")
         self.assertEqual(self.loja.locacaoSemana(2, True), datetime.datetime.now())
     
-    def testeLocacaoSemana_bikenegativa(self):
-        print("\nTeste de LOJA - Locação SEMANA Bike Negativa")
+    def testeLocacaoSemanaComBikeNegativa(self):
+        print("\nTeste de LOJA - Locação SEMANA com Bike Negativa")
         self.assertEqual(self.loja.locacaoSemana(-1, True), None)
     
-    def testeLocacaoSemana_estouraestoque(self):
-        print("\nTeste de LOJA - Locação SEMANA Excedendo o Estoque")
-        self.assertEqual(self.loja.locacaoSemana(105, True), None)
+    def testLocacaoSemanaAcimaDoEstoque(self):
+        print("\nTeste de LOJA - Locação SEMANA de 150 Bikes, acima do estoque")
+        self.assertEqual(self.loja.locacaoSemana(150, True), None)
 
-    def testeLocacaoFamilia1(self):
-        print("teste locação familia com apenas 1 bike")
+    def testeLocacaoFamiliaComUmaBike(self):
+        print("\nTeste de LOJA - Locação Família com apenas 1 Bike, não aplica o desconto")
         self.assertAlmostEqual(self.loja.locacaoFamilia(1, True), False)
 
     def testeLocacaoFamiliaCenarioIdeal(self):
-        print("teste locação familia com cenário ideal")
+        print("\nTeste de LOJA - Locação Família com 3 Bikes, Cenário Ideal")
         self.assertAlmostEqual(self.loja.locacaoFamilia(3, True), True)
 
-    def testeLocacaoFamilia6(self):
-        print("teste locação familia com 6 bikes")
+    def testeLocacaoFamiliaComSeisBike(self):
+        print("\nTeste de LOJA - Locação Família com 6 Bikes, não aplica o desconto")
         self.assertAlmostEqual(self.loja.locacaoFamilia(6, True), False)
 
     #def testeCalcularConta(self):

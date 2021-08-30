@@ -8,12 +8,12 @@ class Cliente(object):
         self.horaLocacao = horaLocacao
 
     # visulizar as bicicletas disponíveis no Estoque da Loja
-    def mostrarEstoque(self, novaLoja):
-        print(f"Estoque disponível: {novaLoja.estoque} bicicletas")
-        return novaLoja.estoque
+    def mostrarEstoque(self, objLoja):
+        print(f"Estoque disponível: {objLoja.estoque} bicicletas")
+        return objLoja.estoque
 
     # alugar bicicletas, conforme a quantidade e modalidades a serem escolhidas
-    def alugarBike(self, qtdBikes, tipoLocacao, novaLoja):
+    def alugarBike(self, qtdBikes, tipoLocacao, objLoja):
         self.qtdBikes = qtdBikes
         self.tipoLocacao = tipoLocacao
 
@@ -21,7 +21,7 @@ class Cliente(object):
         try:
             qtdBikes = int(qtdBikes)
         except ValueError:
-            print("Quantidade inválida, favor inserir um número inteiro positivo.")
+            print("Entrada inválida, favor inserir um número inteiro positivo.")
             return -1
         
         if qtdBikes < 1:
@@ -49,11 +49,11 @@ class Cliente(object):
                 break
 
             if tipoLocacao == 1:
-                self.horaLocacao = novaLoja.locacaoHora(self.qtdBikes, novaLoja)
+                self.horaLocacao = objLoja.locacaoHora(self.qtdBikes, objLoja)
             elif tipoLocacao == 2:
-                self.horaLocacao = novaLoja.locacaoDia(self.qtdBikes, novaLoja)
+                self.horaLocacao = objLoja.locacaoDia(self.qtdBikes, objLoja)
             else:
-                self.horaLocacao = novaLoja.locacaoSemana(self.qtdBikes, novaLoja)
+                self.horaLocacao = objLoja.locacaoSemana(self.qtdBikes, objLoja)
             self.tipoLocacao = tipoLocacao
             return self.qtdBikes, self.tipoLocacao, self.horaLocacao
 
