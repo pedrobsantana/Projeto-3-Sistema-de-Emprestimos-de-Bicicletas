@@ -1,4 +1,4 @@
-# Projeto-3-Sistema-de-Emprestimos-de-Bicicletas
+# Projeto 3 - Sistema de Empréstimos de Bicicletas
 
 Sistema de Empréstimo de Bicicletas
 
@@ -39,5 +39,3 @@ Note na criação de testes as seguintes dicas:
 . É comum que as classes de testes sejam maiores que as próprias classes que elas testam, mas isso é uma coisa boa!
 . Busquem a maior cobertura de código possível, idealmente a cobertura de 100% do programa, para isso vão construindo os testes juntamente com o desenvolvimento do programa;
 . Se o teste feito está correto mas apresentou um erro, isso significa que foi encontrado um erro no seu código principal, conserte o código principal e não teste.
-
-Bons estudos a todos!
